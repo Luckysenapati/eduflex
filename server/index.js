@@ -1,19 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
@@ -25,6 +10,7 @@ import mediaRoute from "./routes/media.route.js";
 import purchaseRoute from "./routes/purchaseCourse.route.js";
 import courseProgressRoute from "./routes/courseProgress.route.js";
 import purchaseCourseRoutes from "./routes/purchaseCourse.route.js";
+import path from "path";
 
 // ✅ Swagger setup
 import swaggerUi from "swagger-ui-express";
@@ -68,6 +54,13 @@ app.use(
   })
 );
 
+//////////////////
+const _dirname = path.resolve();
+/////////////////
+
+
+
+
 // ✅ Swagger route
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 
@@ -78,6 +71,14 @@ app.use("/api/v1/course", courseRoute);
 app.use("/api/v1/purchase", purchaseRoute);
 app.use("/api/v1/progress", courseProgressRoute);
 app.use("/api", purchaseCourseRoutes);
+
+
+////////////////////////
+app.use(express.static(path.join(_dirname, "client/dist")));
+app.get('*',(req,res)=>{
+  res.sendFile(path.resolve(_dirname, "client", "dist", "index.html"));
+});
+/////////////////////
 
 // Start server
 app.listen(PORT, () => {
