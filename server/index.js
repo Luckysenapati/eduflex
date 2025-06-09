@@ -49,7 +49,11 @@ app.use(cookieParser());
 
 app.use(
   cors({
+<<<<<<< HEAD
     origin: "https://eduflex-6csh.onrender.com",
+=======
+    origin: "http://localhost:5173",
+>>>>>>> c8e1c5d48b398424d8e8955d4dc6c570f6bcdb5a
     credentials: true,
   })
 );
