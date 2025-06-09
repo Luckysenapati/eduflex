@@ -105,7 +105,7 @@ const Navbar = () => {
 
       {/* Mobile */}
       <div className="flex md:hidden items-center justify-between px-4 h-full">
-        <h1 className="font-extrabold text-2xl">E-learning</h1>
+        <h1 className="font-extrabold text-2xl">EduFlex</h1>
         <MobileNavbar user={user} logoutHandler={logoutHandler} />
       </div>
     </div>
