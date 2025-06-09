@@ -12,12 +12,8 @@
 
 
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
-<<<<<<< HEAD
 const COURSE_PURCHASE_API = "https://eduflex-6csh.onrender.com/api/v1/purchase";
-=======
-const COURSE_PURCHASE_API = "http://localhost:8080/api/v1/purchase";
->>>>>>> c8e1c5d48b398424d8e8955d4dc6c570f6bcdb5a
+
 
 export const purchaseApi = createApi({
   reducerPath: "purchaseApi",

@@ -17,11 +17,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "sonner";
 
-<<<<<<< HEAD
 const MEDIA_API = "https://eduflex-6csh.onrender.com/api/v1/media";
-=======
-const MEDIA_API = "http://localhost:8080/api/v1/media";
->>>>>>> c8e1c5d48b398424d8e8955d4dc6c570f6bcdb5a
 
 const LectureTab = () => {
   const [lectureTitle, setLectureTitle] = useState("");

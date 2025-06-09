@@ -9,11 +9,7 @@ const MyLearning = () => {
   useEffect(() => {
     const fetchPurchasedCourses = async () => {
       try {
-<<<<<<< HEAD
         const response = await fetch("https://eduflex-6csh.onrender.com/api/v1/purchase/purchased-courses", {
-=======
-        const response = await fetch("http://localhost:8080/api/v1/purchase/purchased-courses", {
->>>>>>> c8e1c5d48b398424d8e8955d4dc6c570f6bcdb5a
           method: "GET",
           credentials: "include",
         });
