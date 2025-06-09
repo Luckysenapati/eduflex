@@ -1,5 +1,5 @@
+import { Menu, School } from "lucide-react";
 import React, { useEffect } from "react";
-import { Menu } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,14 +21,11 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "./ui/sheet";
-import { Separator } from "./ui/separator";
+import { Separator } from "./ui/separator"; // ✅ Correct separator
 import { Link, useNavigate } from "react-router-dom";
 import { useLogoutUserMutation } from "@/features/api/authApi";
 import { toast } from "sonner";
 import { useSelector } from "react-redux";
-
-// ✅ Replace this with the correct relative path if you use src/assets
-const logo = "/eduflex.png"; // Use public folder
 
 const Navbar = () => {
   const { user } = useSelector((store) => store.auth);
@@ -51,12 +48,8 @@ const Navbar = () => {
       {/* Desktop */}
       <div className="max-w-7xl mx-auto hidden md:flex justify-between items-center gap-10 h-full px-4">
         <div className="flex items-center gap-2">
-          <Link to="/" className="flex items-center gap-2">
-            <img
-              src={logo}
-              alt="EduFlex Logo"
-              className="w-8 h-8 object-contain"
-            />
+          <School  size={30} /> 
+          <Link to="/">
             <h1 className="hidden md:block font-extrabold text-2xl">EduFlex</h1>
           </Link>
         </div>
@@ -76,26 +69,26 @@ const Navbar = () => {
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                  <DropdownMenuItem>
-                    <Link to="/my-learning">My Learning</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Link to="/profile">Edit Profile</Link>
-                  </DropdownMenuItem>
-                  {user?.role === "instructor" && (
-                    <DropdownMenuItem onClick={() => navigate("/admin/dashboard")}>
-                      Dashboard
-                    </DropdownMenuItem>
-                  )}
-                  {user?.role === "student" && (
-                    <DropdownMenuItem onClick={() => navigate("/student/dashboard")}>
-                      Dashboard
-                    </DropdownMenuItem>
-                  )}
-                  <DropdownMenuItem onClick={logoutHandler}>
-                    Log out
-                  </DropdownMenuItem>
-                </DropdownMenuGroup>
+                      <DropdownMenuItem>
+                        <Link to="/my-learning">My Learning</Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Link to="/profile">Edit Profile</Link>
+                      </DropdownMenuItem>
+                      {user?.role === "instructor" && (
+                        <DropdownMenuItem onClick={() => navigate("/admin/dashboard")}>
+                          Dashboard
+                        </DropdownMenuItem>
+                      )}
+                      {user?.role === "student" && (
+                        <DropdownMenuItem onClick={() => navigate("/student/dashboard")}>
+                          Dashboard
+                        </DropdownMenuItem>
+                      )}
+                      <DropdownMenuItem onClick={logoutHandler}>
+                        Log out
+                      </DropdownMenuItem>
+                  </DropdownMenuGroup>              
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
@@ -112,10 +105,7 @@ const Navbar = () => {
 
       {/* Mobile */}
       <div className="flex md:hidden items-center justify-between px-4 h-full">
-        <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="EduFlex Logo" className="w-8 h-8 object-contain" />
-          <h1 className="font-extrabold text-2xl">EduFlex</h1>
-        </Link>
+        <h1 className="font-extrabold text-2xl">E-learning</h1>
         <MobileNavbar user={user} logoutHandler={logoutHandler} />
       </div>
     </div>
@@ -137,7 +127,7 @@ const MobileNavbar = ({ user, logoutHandler }) => {
       <SheetContent className="flex flex-col">
         <SheetHeader className="flex flex-row items-center justify-between mt-2">
           <SheetTitle>
-            <Link to="/">EduFlex</Link>
+            <Link to="/">E-Learning</Link>
           </SheetTitle>
           <DarkMode />
         </SheetHeader>
@@ -149,12 +139,10 @@ const MobileNavbar = ({ user, logoutHandler }) => {
             Log out
           </p>
         </nav>
-        {user?.role === "instructor" && (
+         {user?.role === "instructor" && (
           <SheetFooter>
             <SheetClose asChild>
-              <Button type="submit" onClick={() => navigate("/admin/dashboard")}>
-                Dashboard
-              </Button>
+              <Button type="submit" onClick={()=> navigate("/admin/dashboard")}>Dashboard</Button>
             </SheetClose>
           </SheetFooter>
         )}
@@ -162,7 +150,6 @@ const MobileNavbar = ({ user, logoutHandler }) => {
     </Sheet>
   );
 };
-
 
 
 
