@@ -187,19 +187,53 @@ export const getAllPurchasedCourse = async (req, res) => {
 };
 
 
+
+//import { CoursePurchase } from "../models/coursePurchase.model.js";
+
 export const getPurchasedCourses = async (req, res) => {
   try {
-    console.log("➡️  User ID:", req.id); // Check if user ID is set
+    console.log("➡️  User ID:", req.id); // Debug: Make sure req.id is coming through
 
-    const courses = await CoursePurchase.find({ userId: req.id }).populate("courseId");
+    const courses = await CoursePurchase.find({ userId: req.id })
+      .populate({
+        path: "courseId",
+        populate: {
+          path: "creator",
+          select: "name photoUrl", // ✅ This matches frontend expectation
+        },
+      });
 
-    console.log("📦 Courses found:", courses); // Check if anything is found
+    console.log("📦 Courses found:", courses);
 
-    res.json({ purchasedCourse: courses });
+    return res.status(200).json({
+      purchasedCourse: courses,
+    });
   } catch (error) {
-    console.error("❌ Error fetching courses:", error);
-    res.status(500).json({ message: "Internal Server Error" });
+    console.error("❌ Error fetching purchased courses:", error);
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
+
+
+
+
+
+
+
+// export const getPurchasedCourses = async (req, res) => {
+//   try {
+//     console.log("➡️  User ID:", req.id); // Check if user ID is set
+
+//     const courses = await CoursePurchase.find({ userId: req.id }).populate("courseId");
+
+//     console.log("📦 Courses found:", courses); // Check if anything is found
+
+//     res.json({ purchasedCourse: courses });
+//   } catch (error) {
+//     console.error("❌ Error fetching courses:", error);
+//     res.status(500).json({ message: "Internal Server Error" });
+//   }
+// };
 
 
